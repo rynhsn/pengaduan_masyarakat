@@ -10,18 +10,9 @@ class AuthGroupsSeeder extends Seeder
     {
 
         $data = [
-            [
-                'name'            => 'Super Admin',
-                'description'     => 'Overpower Administrator',
-            ],
-            [
-                'name'            => 'Administrator',
-                'description'     => 'Administrator',
-            ],
-            [
-                'name'            => 'User',
-                'description'     => 'Penggguna',
-            ]
+            ['name' => 'Super Admin', 'description' => 'Overpower Administrator'],
+            ['name' => 'Administrator', 'description' => 'Administrator'],
+            ['name' => 'User', 'description' => 'Penggguna']
         ];
 
         // Using Query Builder

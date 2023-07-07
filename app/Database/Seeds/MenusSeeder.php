@@ -37,7 +37,38 @@ class MenusSeeder extends Seeder
                 'notify' => '0',
                 'sequence' => '3',
                 'created_at' => Time::now(),
-            ]
+            ],
+            //menu Manage Complaint
+            [
+                'permission_id' => '5',
+                'menu' => 'Pengaduan Masuk',
+                'description' => 'Pengaturan pengaduan',
+                'url' => 'pengaduan',
+                'icon' => 'ki-outline ki-message-question',
+                'is_active' => '1',
+                'is_parent' => '0',
+                'is_core' => '1',
+                'has_notify' => '0',
+                'notify' => '0',
+                'sequence' => '4',
+                'created_at' => Time::now(),
+            ],
+
+            //riwayat pengaduan
+            [
+                'permission_id' => '5',
+                'menu' => 'Riwayat Pengaduan',
+                'description' => 'Riwayat pengaduan',
+                'url' => 'pengaduan/riwayat',
+                'icon' => 'ki-outline ki-time',
+                'is_active' => '1',
+                'is_parent' => '0',
+                'is_core' => '1',
+                'has_notify' => '0',
+                'notify' => '0',
+                'sequence' => '5',
+                'created_at' => Time::now(),
+            ],
         ];
         $this->db->table('menus');
         $this->db->table('menus')->insertBatch($data);

@@ -22,5 +22,29 @@ class AuthSuperadminSeeder extends Seeder
         $user->activate();
         // Insert user
         $userModel->withGroup('Super Admin')->skipValidation(true)->protect(false)->save($user);
+
+        //admin
+        $data = [
+            'username' => 'admin',
+            'email' => 'admin@example.com',
+            'password' => 'admin'
+        ];
+
+        $user = new User($data);
+        $user->activate();
+        // Insert user
+        $userModel->withGroup('Administrator')->skipValidation(true)->protect(false)->save($user);
+
+        //user
+        $data = [
+            'username' => 'user',
+            'email' => 'user@example.com',
+            'password' => 'user'
+        ];
+
+        $user = new User($data);
+        $user->activate();
+        // Insert user
+        $userModel->withGroup('User')->skipValidation(true)->protect(false)->save($user);
     }
 }

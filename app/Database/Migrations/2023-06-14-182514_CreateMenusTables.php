@@ -9,21 +9,21 @@ class CreateMenusTables extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+            'id'            => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'permission_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
-            'menu' => ['type' => 'VARCHAR', 'constraint' => 255],
-            'description' => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
-            'url' => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
-            'icon' => ['type' => 'VARCHAR', 'constraint' => 255],
-            'is_active' => ['type' => 'INT', 'constraint' => 1, 'default' => 1],
-            'is_parent' => ['type' => 'INT', 'constraint' => 1, 'default' => 0],
-            'has_notify' => ['type' => 'INT', 'constraint' => 1, 'default' => 0],
-            'is_core' => ['type' => 'INT', 'constraint' => 1, 'default' => 0],
-            'notify' => ['type' => 'INT', 'constraint' => 11, 'default' => 0],
-            'sequence' => ['type' => 'INT', 'constraint' => 11, 'default' => 0],
-            'created_at' => ['type' => 'DATETIME', 'null' => true],
-            'updated_at' => ['type' => 'DATETIME', 'null' => true],
-            'deleted_at' => ['type' => 'DATETIME', 'null' => true],
+            'menu'          => ['type' => 'VARCHAR', 'constraint' => 255],
+            'description'   => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
+            'url'           => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
+            'icon'          => ['type' => 'VARCHAR', 'constraint' => 255],
+            'is_active'     => ['type' => 'INT', 'constraint' => 1, 'default' => 1],
+            'is_parent'     => ['type' => 'INT', 'constraint' => 1, 'default' => 0],
+            'has_notify'    => ['type' => 'INT', 'constraint' => 1, 'default' => 0],
+            'is_core'       => ['type' => 'INT', 'constraint' => 1, 'default' => 0],
+            'notify'        => ['type' => 'INT', 'constraint' => 11, 'default' => 0],
+            'sequence'      => ['type' => 'INT', 'constraint' => 11, 'default' => 0],
+            'created_at'    => ['type' => 'DATETIME', 'null' => true],
+            'updated_at'    => ['type' => 'DATETIME', 'null' => true],
+            'deleted_at'    => ['type' => 'DATETIME', 'null' => true],
         ]);
 
         $this->forge->addKey('id', true);

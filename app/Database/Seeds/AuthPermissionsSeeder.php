@@ -9,22 +9,11 @@ class AuthPermissionsSeeder extends Seeder
     public function run()
     {
         $data = [
-            [
-                'name'            => 'manage-user',
-                'description'     => 'Users Management',
-            ],
-            [
-                'name'            => 'manage-permission',
-                'description'     => 'Permission Management',
-            ],
-            [
-                'name'          => 'manage-role',
-                'description'   => 'Role Management',
-            ],
-            [
-                'name'            => 'manage-menu',
-                'description'     => 'Menu Management'
-            ]
+            ['name' => 'manage-user', 'description' => 'Users Management'],
+            ['name' => 'manage-permission','description' => 'Permission Management'],
+            ['name' => 'manage-role','description' => 'Role Management'],
+            ['name' => 'manage-menu','description' => 'Menu Management'],
+            ['name' => 'manage-complaint','description' => 'Complaint Management']
         ];
 
         // Using Query Builder
