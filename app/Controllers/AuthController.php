@@ -141,7 +141,7 @@ class AuthController extends Controller
      */
     public function attemptRegister()
     {
-//        dd($this->request->getPost('tanggal_lahir'));
+//        dd($this->request->getFile('foto_ktp'));
         // Check if registration is allowed
         if (! $this->config->allowRegistration) {
             return redirect()->back()->withInput()->with('error', lang('Auth.registerDisabled'));
@@ -155,6 +155,14 @@ class AuthController extends Controller
             'nik'      => 'required|is_unique[profile.nik]|min_length[16]|max_length[16]|numeric',
             'username' => 'required|alpha_numeric_space|min_length[3]|max_length[30]|is_unique[users.username]',
             'email'    => 'required|valid_email|is_unique[users.email]',
+            'foto_ktp' => [
+                'rules' => 'uploaded[foto_ktp]|max_size[foto_ktp,2048]|is_image[foto_ktp]|mime_in[foto_ktp,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar terlalu besar.',
+                    'is_image' => 'Yang anda pilih bukan gambar.',
+                    'mime_in' => 'Yang anda pilih bukan gambar.'
+                ]
+            ]
         ];
 
         if (! $this->validate($rules)) {
@@ -186,8 +194,12 @@ class AuthController extends Controller
         if (! $users->save($user)) {
             return redirect()->back()->withInput()->with('errors', $users->errors());
         }
+
         //AMBIL USER ID YANG BARU SAJA DIBUAT
         $user_id = $users->getInsertID();
+        $image = $this->request->getFile('foto_ktp');
+        $foto_ktp = 'ktp_'. $user_id . '.' . $image->getExtension();
+        $image->move('uploads/ktp/', $foto_ktp);
         $data = [
             'user_id' => $user_id,
             'nik' => $this->request->getPost('nik'),
@@ -196,7 +208,7 @@ class AuthController extends Controller
             'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
             'alamat' => $this->request->getPost('alamat'),
             'telepon' => $this->request->getPost('telepon'),
-//            'foto_ktp' => $this->request->getPost('foto_ktp'),
+            'foto_ktp' => $foto_ktp,
             'foto_profil' => 'blank.png',
             'created_at' => date('Y-m-d H:i:s'),
 //            'updated_at' => date('Y-m-d H:i:s'),

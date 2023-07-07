@@ -100,7 +100,6 @@
 
 <script>
     $("#kt_datepicker_flat").flatpickr();
-    console.log('test');
 </script>
 </body>
 <!--end::Body-->

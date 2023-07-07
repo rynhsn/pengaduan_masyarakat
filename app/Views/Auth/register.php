@@ -7,7 +7,7 @@
             <!--begin::Wrapper-->
             <div class="w-lg-500px p-10">
                 <!--begin::Form-->
-                <form class="form w-350px" action="<?= url_to('register') ?>" method="post">
+                <form class="form w-350px" action="<?= url_to('register') ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <!--begin::Heading-->
                     <div class="text-center mb-11">
@@ -31,6 +31,7 @@
                         <!--end::NIK-->
                     </div>
                     <!--end::Input group=-->
+
                     <!--begin::Input group=-->
                     <div class="fv-row mb-8">
                         <!--begin::Nama Lengkap-->
@@ -57,18 +58,6 @@
 
                     <!--begin::Input group=-->
                     <div class="fv-row mb-8">
-                        <!--begin::tanggal lahir-->
-                        <input type="text" id="kt_datepicker_flat" placeholder="Tanggal Lahir" name="tanggal_lahir" aria-describedby="tglLahirHelp" class="form-control bg-transparent<?php if (session('errors.tanggal_lahir')) : ?> is-invalid<?php endif ?>" value="<?= old('tanggal_lahir') ?>" required/>
-                        <div class="invalid-feedback">
-                            <?= session('errors.tanggal_lahir') ?>
-                        </div>
-                        <div id="tglLahirHelp" class="text-muted">Tanggal Lahir</div>
-                        <!--end::tanggal lahir-->
-                    </div>
-                    <!--begin::Input group=-->
-
-                    <!--begin::Input group=-->
-                    <div class="fv-row mb-8">
                         <!--begin::No. Telepon-->
                         <input type="number" placeholder="Nomor Telepon" name="telepon" maxlength="13" minlength="10"
                                class="form-control bg-transparent <?php if (session('errors.telepon')) : ?>is-invalid<?php endif ?>"
@@ -90,6 +79,31 @@
                         <div class="invalid-feedback">
                             <?= session('errors.jenis_kelamin') ?>
                         </div>
+                    </div>
+                    <!--end::Input group=-->
+
+                    <!--begin::Input group=-->
+                    <div class="fv-row mb-8">
+                        <!--begin::tanggal lahir-->
+                        <input type="text" id="kt_datepicker_flat" placeholder="Tanggal Lahir" name="tanggal_lahir" aria-describedby="tglLahirHelp" class="form-control bg-transparent<?php if (session('errors.tanggal_lahir')) : ?> is-invalid<?php endif ?>" value="<?= old('tanggal_lahir') ?>" required/>
+                        <div class="invalid-feedback">
+                            <?= session('errors.tanggal_lahir') ?>
+                        </div>
+                        <div id="tglLahirHelp" class="text-muted">Tanggal Lahir</div>
+                        <!--end::tanggal lahir-->
+                    </div>
+                    <!--begin::Input group=-->
+
+                    <!--begin::Input group=-->
+                    <div class="fv-row mb-8">
+                        <!--begin::Foto KTP-->
+                        <input type="file" name="foto_ktp" aria-describedby="ktpHelp"
+                               class="form-control bg-transparent <?php if (session('errors.foto_ktp')) : ?>is-invalid<?php endif ?>" accept=".png, .jpg, .jpeg" value="<?= old('foto_ktp') ?>" required/>
+                        <div class="invalid-feedback">
+                            <?= session('errors.foto_ktp') ?>
+                        </div>
+                        <div id="ktpHelp" class="text-muted">Harap masukkan foto KTP</div>
+                        <!--end::Foto KTP-->
                     </div>
                     <!--end::Input group=-->
 
