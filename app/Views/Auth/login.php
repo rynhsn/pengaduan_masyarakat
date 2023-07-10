@@ -1,4 +1,4 @@
-<?= $this->extend('auth/layouts/index') ?>
+<?= $this->extend($config->viewLayout) ?>
 <?= $this->section('content') ?>
         <!--begin::Body-->
         <div class="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10 order-2 order-lg-1">

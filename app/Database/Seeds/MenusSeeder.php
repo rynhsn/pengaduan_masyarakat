@@ -21,7 +21,7 @@ class MenusSeeder extends Seeder
                 'is_core' => '1',
                 'has_notify' => '0',
                 'notify' => '0',
-                'sequence' => '2',
+                'sequence' => '1',
                 'created_at' => Time::now(),
             ],
             [
@@ -35,16 +35,32 @@ class MenusSeeder extends Seeder
                 'is_core' => '1',
                 'has_notify' => '0',
                 'notify' => '0',
-                'sequence' => '3',
+                'sequence' => '2',
                 'created_at' => Time::now(),
             ],
             //menu Manage Complaint
             [
                 'permission_id' => '5',
                 'menu' => 'Pengaduan Masuk',
-                'description' => 'Pengaturan pengaduan',
-                'url' => 'pengaduan',
+                'description' => 'Pengaduan Masuk',
+                'url' => 'pengaduan-masuk',
                 'icon' => 'ki-outline ki-message-question',
+                'is_active' => '1',
+                'is_parent' => '0',
+                'is_core' => '1',
+                'has_notify' => '0',
+                'notify' => '0',
+                'sequence' => '3',
+                'created_at' => Time::now(),
+            ],
+
+            //riwayat pengaduan
+            [
+                'permission_id' => '5',
+                'menu' => 'Riwayat Pengaduan',
+                'description' => 'Riwayat pengaduan',
+                'url' => 'pengaduan-masuk/riwayat',
+                'icon' => 'ki-outline ki-time',
                 'is_active' => '1',
                 'is_parent' => '0',
                 'is_core' => '1',
@@ -54,19 +70,67 @@ class MenusSeeder extends Seeder
                 'created_at' => Time::now(),
             ],
 
-            //riwayat pengaduan
+            //Pengaduan
             [
-                'permission_id' => '5',
-                'menu' => 'Riwayat Pengaduan',
-                'description' => 'Riwayat pengaduan',
-                'url' => 'pengaduan/riwayat',
-                'icon' => 'ki-outline ki-time',
+                'permission_id' => '6',
+                'menu' => 'Pengaduan',
+                'description' => 'Pengaduan',
+                'url' => 'pengaduan',
+                'icon' => 'ki-outline ki-message-question',
                 'is_active' => '1',
                 'is_parent' => '0',
                 'is_core' => '1',
                 'has_notify' => '0',
                 'notify' => '0',
                 'sequence' => '5',
+                'created_at' => Time::now(),
+            ],
+
+            //Status Pengaduan
+            [
+                'permission_id' => '6',
+                'menu' => 'Status Pengaduan',
+                'description' => 'Status Pengaduan',
+                'url' => 'pengaduan/status',
+                'icon' => 'ki-outline ki-like-tag',
+                'is_active' => '1',
+                'is_parent' => '0',
+                'is_core' => '1',
+                'has_notify' => '0',
+                'notify' => '0',
+                'sequence' => '6',
+                'created_at' => Time::now(),
+            ],
+
+            //lapooran
+            [
+                'permission_id' => '7',
+                'menu' => 'Laporan',
+                'description' => 'Laporan Pengaduan',
+                'url' => 'laporan',
+                'icon' => 'ki-outline ki-tablet-text-up',
+                'is_active' => '1',
+                'is_parent' => '0',
+                'is_core' => '1',
+                'has_notify' => '0',
+                'notify' => '0',
+                'sequence' => '7',
+                'created_at' => Time::now(),
+            ],
+
+            //settings
+            [
+                'permission_id' => '8',
+                'menu' => 'Settings',
+                'description' => 'Pengaturan',
+                'url' => null,
+                'icon' => 'ki-outline ki-gear',
+                'is_active' => '1',
+                'is_parent' => '1',
+                'is_core' => '1',
+                'has_notify' => '0',
+                'notify' => '0',
+                'sequence' => '8',
                 'created_at' => Time::now(),
             ],
         ];

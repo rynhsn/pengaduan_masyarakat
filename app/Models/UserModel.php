@@ -121,4 +121,19 @@ class UserModel extends Model
             'password' => bin2hex(random_bytes(16)),
         ]);
     }
+
+    //get user data dan join profile
+    public function getUserData($id = null)
+    {
+        if($id == null){
+            return $this->db->table('users')
+            ->join('profile', 'profile.user_id = users.id')
+            ->get()->getResultArray();
+        }else{
+            return $this->db->table('users')
+            ->join('profile', 'profile.user_id = users.id')
+            ->where('users.id', $id)
+            ->get()->getRowArray();
+        }
+    }
 }

@@ -75,6 +75,34 @@ class SubMenusSeeder extends Seeder
                 'sequence' => '2',
                 'created_at' => Time::now(),
             ],
+            //setting status
+            [
+                'menu_id' => '8',
+                'permission_id' => '8',
+                'sub_menu' => 'Status Pengaduan',
+                'description' => 'Data Status',
+                'url' => 'status',
+                'icon' => 'ki-outline ki-gear',
+                'is_active' => '1',
+                'has_notify' => '0',
+                'notify' => '0',
+                'sequence' => '3',
+                'created_at' => Time::now(),
+            ],
+            //setting desa
+            [
+                'menu_id' => '8',
+                'permission_id' => '8',
+                'sub_menu' => 'Data Desa',
+                'description' => 'Data Desa',
+                'url' => 'desa',
+                'icon' => 'ki-outline ki-gear',
+                'is_active' => '1',
+                'has_notify' => '0',
+                'notify' => '0',
+                'sequence' => '1',
+                'created_at' => Time::now(),
+            ],
         ];
 
         $this->db->table('sub_menus');

@@ -11,6 +11,6 @@ class AuthSeeder extends Seeder
         $this->call('AuthGroupsSeeder');
         $this->call('AuthPermissionsSeeder');
         $this->call('AuthGroupPermissionSeeder');
-        $this->call('AuthSuperadminSeeder');
+        $this->call('AuthUserSeeder');
     }
 }

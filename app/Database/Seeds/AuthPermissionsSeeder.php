@@ -13,7 +13,10 @@ class AuthPermissionsSeeder extends Seeder
             ['name' => 'manage-permission','description' => 'Permission Management'],
             ['name' => 'manage-role','description' => 'Role Management'],
             ['name' => 'manage-menu','description' => 'Menu Management'],
-            ['name' => 'manage-complaint','description' => 'Complaint Management']
+            ['name' => 'manage-complaint','description' => 'Complaint Management'],
+            ['name' => 'user-complaint', 'description' => 'User Complaint'],
+            ['name' => 'laporan', 'description' => 'Laporan'],
+            ['name' => 'settings', 'description' => 'Site Settings'],
         ];
 
         // Using Query Builder

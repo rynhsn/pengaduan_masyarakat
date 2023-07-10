@@ -53,6 +53,7 @@ $routes->group('/', ['filter' => 'login'], function ($routes) {
         $routes->post('update-role/(:num)', 'Users::updateRole/$1');
         $routes->post('update-email/(:num)', 'Users::updateEmail/$1');
         $routes->post('update-password/(:num)', 'Users::updatePassword/$1');
+        $routes->post('update-profile/(:num)', 'Users::updateProfile/$1');
         $routes->post('create', 'Users::store');
         $routes->post('get', 'Users::getUser');
         $routes->post('activate', 'Users::activate');
@@ -77,6 +78,16 @@ $routes->group('/', ['filter' => 'login'], function ($routes) {
         $routes->post('get', 'Permissions::getPermission');
         $routes->put('update', 'Permissions::update');
         $routes->delete('delete', 'Permissions::destroy');
+    });
+
+    //pengaduan
+    $routes->group('pengaduan', ['filter' => 'permission:user-complaint'], function ($routes) {
+        $routes->get('', 'Pengaduan::index');
+        $routes->get('status/(:num)', 'Pengaduan::detail/$1');
+        $routes->post('create', 'Pengaduan::store');
+        $routes->post('get', 'Pengaduan::getPengaduan');
+        $routes->put('update', 'Pengaduan::update');
+        $routes->delete('delete', 'Pengaduan::destroy');
     });
 
 });

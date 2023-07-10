@@ -199,7 +199,7 @@ class AuthController extends Controller
         $user_id = $users->getInsertID();
         $image = $this->request->getFile('foto_ktp');
         $foto_ktp = 'ktp_'. $user_id . '.' . $image->getExtension();
-        $image->move('uploads/ktp/', $foto_ktp);
+        $image->move('media/uploads/ktp/', $foto_ktp);
         $data = [
             'user_id' => $user_id,
             'nik' => $this->request->getPost('nik'),
