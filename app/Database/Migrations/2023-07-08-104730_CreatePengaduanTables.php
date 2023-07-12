@@ -20,11 +20,6 @@ class CreatePengaduanTables extends Migration
             'unsigned'   => true,
             'null'       => true,
         ],
-        'desa_id' => [
-            'type'       => 'INT',
-            'constraint' => 5,
-            'unsigned'   => true,
-        ],
         'status_id' => [
             'type'       => 'INT',
             'constraint' => 5,
@@ -61,7 +56,6 @@ class CreatePengaduanTables extends Migration
 
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('desa_id', 'desa', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('status_id', 'status_pengaduan', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('pengaduan');
     }

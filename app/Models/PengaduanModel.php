@@ -7,13 +7,13 @@ use CodeIgniter\Model;
 class PengaduanModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'pengaduans';
+    protected $table            = 'pengaduan';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['user_id', 'desa_id', 'status_id', 'judul', 'deskripsi', 'foto', 'tanggal', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['user_id', 'status_id', 'judul', 'deskripsi', 'foto', 'tanggal', 'created_at', 'updated_at'];
 
     // Dates
     protected $useTimestamps = true;
