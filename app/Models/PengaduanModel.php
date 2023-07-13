@@ -41,11 +41,20 @@ class PengaduanModel extends Model
 
     public function getByUserId($user_id)
     {
-        return $this->where('user_id', $user_id)->findAll();
+        //where user and join to user table
+        return $this->join('users', 'users.id = pengaduan.user_id')
+            ->join('profile', 'profile.user_id = pengaduan.user_id')
+            ->join('status_pengaduan', 'status_pengaduan.id = pengaduan.status_id')
+            ->where('pengaduan.user_id', $user_id)->findAll();
     }
 
     public function getByDesaId($desa_id)
     {
         return $this->where('desa_id', $desa_id)->findAll();
+    }
+
+    public function getByQuery($query)
+    {
+
     }
 }

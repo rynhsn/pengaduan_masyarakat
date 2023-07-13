@@ -4,18 +4,21 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\PengaduanModel;
+use CodeIgniter\Encryption\EncrypterInterface;
 use Config\Services;
 
 class Pengaduan extends BaseController
 {
     protected PengaduanModel $pengaduanModel;
+    protected EncrypterInterface $encrypter;
 
     public function __construct()
     {
         $this->pengaduanModel = new PengaduanModel();
+        $this->encrypter = Services::encrypter();
     }
 
-    public function index()
+    public function index(): string
     {
         $data = [
             'title' => 'Sampaikan Pengaduan',
@@ -23,13 +26,36 @@ class Pengaduan extends BaseController
         return view('pengaduan/create', $data);
     }
 
+    public function list(): string
+    {
+        $data = [
+            'title' => 'Daftar Pengaduan',
+            'pengaduan' => $this->pengaduanModel->getByUserId(user_id()),
+            'encrypter' => $this->encrypter,
+        ];
+
+//        dd($data['pengaduan']);
+
+        return view('pengaduan/index', $data);
+    }
+
+    public function edit($encodeId)
+    {
+        $id = base64_decode($encodeId);
+
+        $data = [
+            'title' => 'Edit Pengaduan',
+            'validation' => Services::validation(),
+            'pengaduan' => $this->pengaduanModel->find($id),
+        ];
+        return view('pengaduan/edit', $data);
+    }
+
     //save
     public function store()
     {
         $rules = [
-            'foto1' => 'max_size[foto1,1024]|is_image[foto1]|mime_in[foto1,image/jpg,image/jpeg,image/png]',
-            'foto2' => 'max_size[foto2,1024]|is_image[foto2]|mime_in[foto2,image/jpg,image/jpeg,image/png]',
-            'foto3' => 'max_size[foto3,1024]|is_image[foto3]|mime_in[foto3,image/jpg,image/jpeg,image/png]',
+            'foto' => 'max_size[foto,1024]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png]',
         ];
 
         if (!$this->validate($rules)) {
@@ -37,49 +63,86 @@ class Pengaduan extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $foto1 = $this->request->getFile('foto1');
-        $foto2 = $this->request->getFile('foto2');
-        $foto3 = $this->request->getFile('foto3');
-
+        $foto = $this->request->getFile('foto');
         $fileName = user()->id . '_' . time();
         $path = 'media/uploads/pengaduan/';
         //cek gambar, apakah tetap gambar lama
-        if ($foto1->isValid()) {
-            $namaFoto1 = 'foto1_' . $fileName . '.' . $foto1->getExtension();
-            $foto1->move($path, $namaFoto1);
-        }
-
-        if ($foto2->isValid()) {
-            $namaFoto2 = 'foto2_' . $fileName . '.' . $foto2->getExtension();
-            $foto2->move($path, $namaFoto2);
-        }
-
-        if ($foto3->isValid()) {
-            $namaFoto3 = 'foto3_' . $fileName . '.' . $foto3->getExtension();
-            $foto3->move($path, $namaFoto3);
+        if ($foto->isValid()) {
+            $namaFoto = 'foto_' . $fileName . '.' . $foto->getExtension();
+            $foto->move($path, $namaFoto);
         }
 
         $data = [
             'user_id' => user_id(),
             'status_id' => 1, // 1 = 'Diterima'
             'judul' => $this->request->getVar('judul'),
-            'keterangan' => $this->request->getVar('keterangan'),
-            'foto1' => $namaFoto1 ?? null,
-            'foto2' => $namaFoto2 ?? null,
-            'foto3' => $namaFoto3 ?? null,
+            'deskripsi' => $this->request->getVar('deskripsi'),
+            'foto' => $namaFoto ?? null,
             'tanggal' => $this->request->getVar('tanggal') ?? date('Y-m-d'),
         ];
 
-        if(!$this->pengaduanModel->save($data)){
+        if (!$this->pengaduanModel->save($data)) {
             //remove uploaded files
-            if (isset($namaFoto1)) unlink($path . $namaFoto1);
-            if (isset($namaFoto2)) unlink($path . $namaFoto2);
-            if (isset($namaFoto3)) unlink($path . $namaFoto3);
+            if (isset($namaFoto)) unlink($path . $namaFoto);
             session()->setFlashdata('error', 'Pengaduan gagal dikirim.');
             return redirect()->back();
         }
 
         session()->setFlashdata('message', 'Pengaduan berhasil dikirim.');
+        return redirect()->back();
+    }
+
+    public function update()
+    {
+        $rules = [
+            'foto' => 'max_size[foto,1024]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png]',
+        ];
+
+        if (!$this->validate($rules)) {
+            session()->setFlashdata('error', 'Sepertinya ada yang salah, silahkan periksa kembali!');
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $foto = $this->request->getFile('foto');
+        $fileName = user()->id . '_' . time();
+        $path = 'media/uploads/pengaduan/';
+        //cek gambar, apakah tetap gambar lama
+        if ($foto->isValid()) {
+            $namaFoto = 'foto_' . $fileName . '.' . $foto->getExtension();
+            unlink($path . $this->request->getVar('foto_lama'));
+            $foto->move($path, $namaFoto);
+        } else {
+            $namaFoto = $this->request->getVar('foto_lama');
+        }
+
+        $data = [
+            'id' => $this->request->getVar('id'),
+            'user_id' => user_id(),
+            'judul' => $this->request->getVar('judul'),
+            'deskripsi' => $this->request->getVar('deskripsi'),
+            'foto' => $namaFoto,
+            'tanggal' => $this->request->getVar('tanggal') ?? date('Y-m-d'),
+        ];
+
+        if (!$this->pengaduanModel->save($data)) {
+            //remove uploaded files
+            if (isset($namaFoto)) unlink($path . $namaFoto);
+            session()->setFlashdata('error', 'Pengaduan gagal ubah.');
+            return redirect()->back();
+        }
+
+        session()->setFlashdata('message', 'Pengaduan berhasil ubah.');
+        return redirect()->back();
+    }
+
+    public function destroy($encodeId){
+        $id = base64_decode($encodeId);
+        $pengaduan = $this->pengaduanModel->find($id);
+        if($pengaduan['foto'] != null){
+            unlink('media/uploads/pengaduan/' . $pengaduan['foto']);
+        }
+        $this->pengaduanModel->delete($id);
+        session()->setFlashdata('message', 'Pengaduan berhasil dihapus.');
         return redirect()->back();
     }
 }

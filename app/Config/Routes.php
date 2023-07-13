@@ -83,11 +83,11 @@ $routes->group('/', ['filter' => 'login'], function ($routes) {
     //pengaduan
     $routes->group('pengaduan', ['filter' => 'permission:user-complaint'], function ($routes) {
         $routes->get('', 'Pengaduan::index');
-        $routes->get('status/(:num)', 'Pengaduan::detail/$1');
         $routes->post('create', 'Pengaduan::store');
-        $routes->post('get', 'Pengaduan::getPengaduan');
+        $routes->get('status', 'Pengaduan::list/$1');
+        $routes->get('edit/(:any)', 'Pengaduan::edit/$1');
         $routes->put('update', 'Pengaduan::update');
-        $routes->delete('delete', 'Pengaduan::destroy');
+        $routes->get('delete/(:any)', 'Pengaduan::destroy/$1');
     });
 
 });

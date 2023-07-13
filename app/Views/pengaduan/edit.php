@@ -1,8 +1,6 @@
 <?= $this->extend('layouts/layout'); ?>
 <?= $this->section('content'); ?>
 
-
-
 <?php if (session('message')) : ?>
     <!--begin::Notice-->
     <div class="notice d-flex bg-light-success rounded border-success border border-dashed mb-9 p-6">
@@ -51,7 +49,11 @@
 <?php endif; ?>
 
 <!--begin::Form-->
-<form enctype="multipart/form-data" method="post" action="<?= base_url('pengaduan/create') ?>">
+    <?= form_open_multipart('pengaduan/update') ?>
+    <?= csrf_field() ?>
+    <?= form_hidden('_method', 'PUT') ?>
+    <?= form_hidden('id', $pengaduan['id']) ?>
+    <?= form_hidden('foto_lama', $pengaduan['foto']) ?>
     <!--begin::Card body-->
     <!--begin::Row-->
     <div class="row mb-8">
@@ -62,7 +64,7 @@
         <!--end::Col-->
         <!--begin::Col-->
         <div class="col-xl-9 fv-row">
-            <input type="text" class="form-control form-control-solid <?= session('errors.judul') ? 'is-invalid' : '' ?>" placeholder="Konteks pengaduan" name="judul" value="<?= old('judul') ?>" minlength="3" maxlength="255" required/>
+            <input type="text" class="form-control form-control-solid <?= session('errors.judul') ? 'is-invalid' : '' ?>" placeholder="Konteks pengaduan" name="judul" value="<?= old('judul') ?? $pengaduan['judul'] ?>" minlength="3" maxlength="255" required/>
 
             <div class="fv-plugins-message-container invalid-feedback">
                 <?= session('errors.judul') ?>
@@ -80,7 +82,7 @@
         <!--end::Col-->
         <!--begin::Col-->
         <div class="col-xl-9 fv-row">
-            <textarea type="text" class="form-control form-control-solid <?= session('errors.judul') ? 'is-invalid' : '' ?>" rows="7" placeholder="Detail pengaduan" name="deskripsi" required><?= old('judul') ?? null ?></textarea>
+            <textarea type="text" class="form-control form-control-solid <?= session('errors.judul') ? 'is-invalid' : '' ?>" rows="7" placeholder="Detail pengaduan" name="deskripsi" required><?= old('judul') ?? $pengaduan['deskripsi'] ?></textarea>
 
             <div class="fv-plugins-message-container invalid-feedback">
                 <?= session('errors.deskripsi') ?>
@@ -100,8 +102,7 @@
         <div class="col-xl-9 fv-row">
             <div class="position-relative d-flex align-items-center">
                 <i class="ki-outline ki-calendar-8 position-absolute ms-4 mb-1 fs-2"></i>
-                <input class="form-control form-control-solid ps-12" name="date" placeholder="Pilih tanggal"
-                       id="kt_datepicker_1"/>
+                <input class="form-control form-control-solid ps-12" name="date" placeholder="Pilih tanggal" id="kt_datepicker_1" value="<?= $pengaduan['tanggal'] ?>"/>
             </div>
         </div>
         <!--begin::Col-->
@@ -112,12 +113,16 @@
     <div class="row mb-8">
         <!--begin::Col-->
         <div class="col-xl-3">
-            <div class="fs-6 fw-semibold mt-2 mb-3 required">Foto</div>
+            <div class="fs-6 fw-semibold mt-2 mb-3">Foto</div>
         </div>
         <!--end::Col-->
+<!--        preview foto-->
+        <div class="col-xl-3 fv-row">
+            <img src="<?= base_url('media/uploads/pengaduan/' . $pengaduan['foto']) ?>" alt="foto" width="200px">
+        </div>
         <!--begin::Col-->
-        <div class="col-xl-9 fv-row">
-            <input type="file" class="form-control form-control-solid <?= session('errors.foto') ? 'is-invalid' : '' ?>" name="foto" accept=".png, .jpg, .jpeg" required/>
+        <div class="col-xl-6 fv-row">
+            <input type="file" class="form-control form-control-solid <?= session('errors.foto') ? 'is-invalid' : '' ?>" name="foto" accept=".png, .jpg, .jpeg"/>
 
             <div class="fv-plugins-message-container invalid-feedback">
                 <?= session('errors.foto') ?>
@@ -127,7 +132,7 @@
     <!--end::Row-->
 
     <button type="submit" class="btn btn-primary">Kirim</button>
-</form>
+    <?= form_close() ?>
 <!--end:Form-->
 
 <?= $this->endSection() ?>
