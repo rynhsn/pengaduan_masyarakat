@@ -90,6 +90,15 @@ $routes->group('/', ['filter' => 'login'], function ($routes) {
         $routes->get('delete/(:any)', 'Pengaduan::destroy/$1');
     });
 
+    //pengaduan-masuk
+    $routes->group('pengaduan-masuk', ['filter' => 'permission:manage-complaint'], function ($routes) {
+        $routes->get('', 'PengaduanMasuk::index');
+        $routes->get('detail/(:num)', 'PengaduanMasuk::detail/$1');
+        $routes->post('create', 'PengaduanMasuk::store');
+        $routes->post('get', 'PengaduanMasuk::getComplaint');
+        $routes->put('update', 'PengaduanMasuk::update');
+        $routes->delete('delete', 'PengaduanMasuk::destroy');
+    });
 });
 
 /*
