@@ -52,19 +52,19 @@
     <?= form_open_multipart('pengaduan/update') ?>
     <?= csrf_field() ?>
     <?= form_hidden('_method', 'PUT') ?>
-    <?= form_hidden('id', $pengaduan['id']) ?>
+    <?= form_hidden('kode', $pengaduan['kode']) ?>
     <?= form_hidden('foto_lama', $pengaduan['foto']) ?>
     <!--begin::Card body-->
     <!--begin::Row-->
     <div class="row mb-8">
         <!--begin::Col-->
         <div class="col-xl-3">
-            <div class="fs-6 fw-semibold mt-2 mb-3 required">Judul</div>
+            <div class="fs-6 fw-semibold mt-2 mb-3 required">Subjek Pengaduan</div>
         </div>
         <!--end::Col-->
         <!--begin::Col-->
         <div class="col-xl-9 fv-row">
-            <input type="text" class="form-control form-control-solid <?= session('errors.judul') ? 'is-invalid' : '' ?>" placeholder="Konteks pengaduan" name="judul" value="<?= old('judul') ?? $pengaduan['judul'] ?>" minlength="3" maxlength="255" required/>
+            <input type="text" class="form-control form-control-solid <?= session('errors.judul') ? 'is-invalid' : '' ?>" placeholder="Subjek pengaduan" name="judul" value="<?= old('judul') ?? $pengaduan['judul'] ?>" minlength="3" maxlength="255" required/>
 
             <div class="fv-plugins-message-container invalid-feedback">
                 <?= session('errors.judul') ?>
@@ -117,7 +117,7 @@
         </div>
         <!--end::Col-->
 <!--        preview foto-->
-        <div class="col-xl-3 fv-row">
+        <div class="col-xl-3 fv-row mb-3">
             <img src="<?= base_url('media/uploads/pengaduan/' . $pengaduan['foto']) ?>" alt="foto" width="200px">
         </div>
         <!--begin::Col-->
@@ -132,6 +132,7 @@
     <!--end::Row-->
 
     <button type="submit" class="btn btn-primary">Kirim</button>
+    <a href="<?= base_url('pengaduan/status') ?>" class="btn btn-secondary ms-3">Kembali</a>
     <?= form_close() ?>
 <!--end:Form-->
 

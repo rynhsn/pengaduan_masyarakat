@@ -1,8 +1,6 @@
 <?= $this->extend('layouts/layout'); ?>
 <?= $this->section('content'); ?>
 
-
-
 <?php if (session('message')) : ?>
     <!--begin::Notice-->
     <div class="notice d-flex bg-light-success rounded border-success border border-dashed mb-9 p-6">
@@ -57,12 +55,12 @@
     <div class="row mb-8">
         <!--begin::Col-->
         <div class="col-xl-3">
-            <div class="fs-6 fw-semibold mt-2 mb-3 required">Judul</div>
+            <div class="fs-6 fw-semibold mt-2 mb-3 required">Subjek Pengaduan</div>
         </div>
         <!--end::Col-->
         <!--begin::Col-->
         <div class="col-xl-9 fv-row">
-            <input type="text" class="form-control form-control-solid <?= session('errors.judul') ? 'is-invalid' : '' ?>" placeholder="Konteks pengaduan" name="judul" value="<?= old('judul') ?>" minlength="3" maxlength="255" required/>
+            <input type="text" class="form-control form-control-solid <?= session('errors.judul') ? 'is-invalid' : '' ?>" placeholder="Subjek pengaduan" name="judul" value="<?= old('judul') ?>" minlength="3" maxlength="255" required/>
 
             <div class="fv-plugins-message-container invalid-feedback">
                 <?= session('errors.judul') ?>

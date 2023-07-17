@@ -39,14 +39,12 @@ class Pengaduan extends BaseController
         return view('pengaduan/index', $data);
     }
 
-    public function edit($encodeId)
+    public function edit($kode)
     {
-        $id = base64_decode($encodeId);
-
         $data = [
             'title' => 'Edit Pengaduan',
             'validation' => Services::validation(),
-            'pengaduan' => $this->pengaduanModel->find($id),
+            'pengaduan' => $this->pengaduanModel->find($kode),
         ];
         return view('pengaduan/edit', $data);
     }
@@ -63,25 +61,27 @@ class Pengaduan extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
+        $kode = 'TC-P' . time();
+
         $foto = $this->request->getFile('foto');
-        $fileName = user()->id . '_' . time();
+        $fileName = $kode;
         $path = 'media/uploads/pengaduan/';
         //cek gambar, apakah tetap gambar lama
         if ($foto->isValid()) {
-            $namaFoto = 'foto_' . $fileName . '.' . $foto->getExtension();
+            $namaFoto = $fileName . '.' . $foto->getExtension();
             $foto->move($path, $namaFoto);
         }
 
         $data = [
+            'kode' => $kode,
             'user_id' => user_id(),
-            'status_id' => 1, // 1 = 'Diterima'
             'judul' => $this->request->getVar('judul'),
             'deskripsi' => $this->request->getVar('deskripsi'),
             'foto' => $namaFoto ?? null,
             'tanggal' => $this->request->getVar('tanggal') ?? date('Y-m-d'),
         ];
 
-        if (!$this->pengaduanModel->save($data)) {
+        if (!$this->pengaduanModel->insert($data)) {
             //remove uploaded files
             if (isset($namaFoto)) unlink($path . $namaFoto);
             session()->setFlashdata('error', 'Pengaduan gagal dikirim.');
@@ -89,7 +89,7 @@ class Pengaduan extends BaseController
         }
 
         session()->setFlashdata('message', 'Pengaduan berhasil dikirim.');
-        return redirect()->back();
+        return redirect()->to('/pengaduan/status');
     }
 
     public function update()
@@ -115,8 +115,8 @@ class Pengaduan extends BaseController
             $namaFoto = $this->request->getVar('foto_lama');
         }
 
+        $kode = $this->request->getVar('kode');
         $data = [
-            'id' => $this->request->getVar('id'),
             'user_id' => user_id(),
             'judul' => $this->request->getVar('judul'),
             'deskripsi' => $this->request->getVar('deskripsi'),
@@ -124,7 +124,7 @@ class Pengaduan extends BaseController
             'tanggal' => $this->request->getVar('tanggal') ?? date('Y-m-d'),
         ];
 
-        if (!$this->pengaduanModel->save($data)) {
+        if (!$this->pengaduanModel->update($kode, $data)) {
             //remove uploaded files
             if (isset($namaFoto)) unlink($path . $namaFoto);
             session()->setFlashdata('error', 'Pengaduan gagal ubah.');
@@ -135,13 +135,12 @@ class Pengaduan extends BaseController
         return redirect()->back();
     }
 
-    public function destroy($encodeId){
-        $id = base64_decode($encodeId);
-        $pengaduan = $this->pengaduanModel->find($id);
+    public function destroy($kode){
+        $pengaduan = $this->pengaduanModel->find($kode);
         if($pengaduan['foto'] != null){
             unlink('media/uploads/pengaduan/' . $pengaduan['foto']);
         }
-        $this->pengaduanModel->delete($id);
+        $this->pengaduanModel->delete($kode);
         session()->setFlashdata('message', 'Pengaduan berhasil dihapus.');
         return redirect()->back();
     }

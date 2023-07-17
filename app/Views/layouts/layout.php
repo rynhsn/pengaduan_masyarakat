@@ -63,7 +63,7 @@
 				<!--end::Header-->
 				<!--begin::Wrapper-->
 				<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
-					<?= $this->include('Layouts/sidebar') ?>
+					<?= $this->include('layouts/sidebar') ?>
 					<!--begin::Main-->
 					<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
 						<!--begin::Content wrapper-->
@@ -146,6 +146,9 @@
 
 		<script>
 			$("#kt_datepicker_flat").flatpickr();
+			$("#kt_datatable_responsive").DataTable({
+				responsive: true
+			});
 		</script>
 	</body>
 	<!--end::Body-->

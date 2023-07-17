@@ -8,11 +8,9 @@ class CreatePengaduanTables extends Migration
 {
     public function up()
     {$this->forge->addField([
-        'id' => [
-            'type'           => 'INT',
-            'constraint'     => 5,
-            'unsigned'       => true,
-            'auto_increment' => true,
+        'kode' => [
+            'type'           => 'varchar',
+            'constraint'     => 100,
         ],
         'user_id' => [
             'type'       => 'INT',
@@ -24,6 +22,13 @@ class CreatePengaduanTables extends Migration
             'type'       => 'INT',
             'constraint' => 5,
             'unsigned'   => true,
+            'default'    => 1,
+        ],
+        'wilayah_id' => [
+            'type'       => 'INT',
+            'constraint' => 5,
+            'unsigned'   => true,
+            'default'    => 1,
         ],
         'judul' => [
             'type'       => 'VARCHAR',
@@ -54,14 +59,15 @@ class CreatePengaduanTables extends Migration
         ],
     ]);
 
-        $this->forge->addPrimaryKey('id');
+        $this->forge->addPrimaryKey('kode');
         $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('wilayah_id', 'wilayah', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('status_id', 'status_pengaduan', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('pengaduan');
     }
 
     public function down()
     {
-        $this->forge->dropTable('pengaduan');
+        $this->forge->dropTable('pengaduan', true);
     }
 }

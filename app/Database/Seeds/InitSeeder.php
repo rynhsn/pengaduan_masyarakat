@@ -11,6 +11,6 @@ class InitSeeder extends Seeder
         $this->call('AuthSeeder');
         $this->call('MenuSeeder');
         $this->call('StatusPengaduanSeeder');
-        $this->call('DesaSeeder');
+        $this->call('WilayahSeeder');
     }
 }

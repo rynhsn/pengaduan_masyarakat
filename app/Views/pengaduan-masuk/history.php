@@ -97,21 +97,6 @@
                                 </select>
                             </div>
                             <!--end::Input group-->
-                            <?php if (hasActionAccess('write', user_id()) && in_groups(['1', '2'])): ?>
-                            <!--begin::Input group-->
-                            <div class="mb-10">
-                                <label class="form-label fs-6 fw-semibold">Wilayah:</label>
-                                <select class="form-select form-select-solid fw-bold" data-kt-select2="true"
-                                        data-placeholder="Select option" data-allow-clear="true"
-                                        data-kt-user-table-filter="status" data-hide-search="true">
-                                    <option></option>
-                                    <?php foreach ($wilayah as $w) : ?>
-                                        <option value="<?= $w['nama_wilayah'] ?>"><?= $w['nama_wilayah'] ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-                            <!--end::Input group-->
-                            <?php endif; ?>
                             <!--begin::Actions-->
                             <div class="d-flex justify-content-end">
                                 <button type="reset"
@@ -172,8 +157,8 @@
                             <!--begin::User details-->
                         </td>
                         <td class="fw-bold text-gray-900">
-                            <a href="<?= base_url('pengaduan-masuk/detail/' . $item['kode']) ?>"
-                               class="text-gray-800 text-hover-primary mb-1"><?= $item['kode'] ?></a></td>
+                            <a href="<?= base_url('pengaduan-masuk/riwayat/detail/' . $item['kode']) ?>" class="text-gray-800 text-hover-primary mb-1"><?= $item['kode'] ?></a>
+                        </td>
                         <td><?= $item['judul'] ?></td>
                         <td>
                             <span class="badge badge-light-<?= $item['warna'] ?> fw-bolder"><?= $item['label'] ?></span>
@@ -195,21 +180,10 @@
                                 data-kt-menu="true">
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-3">
-                                    <a href="<?= base_url('pengaduan-masuk/detail/' . $item['kode']) ?>"
+                                    <a href="<?= base_url('pengaduan-masuk/riwayat/detail/' . $item['kode']) ?>"
                                        class="menu-link px-3">Detail</a>
                                 </div>
                                 <!--end::Menu item-->
-                                <?php if (hasActionAccess('write', user_id()) && in_groups(['1', '2'])): ?>
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a class="menu-link px-3"
-                                           data-bs-toggle="modal"
-                                           data-bs-target="#kt_modal_assign_pengaduan_<?= $item['kode'] ?>">
-                                            Alih Tugas
-                                        </a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                <?php endif; ?>
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-3">
                                     <a class="menu-link px-3"
@@ -232,92 +206,6 @@
     </div>
     <!--end::Card-->
 
-<?php foreach ($pengaduan as $item) : ?>
-    <!--begin::Modal - Update menus-->
-    <div class="modal fade" id="kt_modal_assign_pengaduan_<?= $item['kode'] ?>" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-650px">
-            <!--begin::Modal content-->
-            <div class="modal-content">
-                <!--begin::Modal header-->
-                <div class="modal-header">
-                    <!--begin::Modal title-->
-                    <h2 class="fw-bold">Alih Tugas Pengaduan</h2>
-                    <!--end::Modal title-->
-                    <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
-                        <i class="ki-outline ki-cross fs-1"></i>
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--end::Modal header-->
-                <!--begin::Modal body-->
-                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                    <!--end::Notice-->
-                    <!--begin::Form-->
-                    <form id="kt_modal_assign_pengaduan_<?= $item['kode'] ?>"
-                          action="<?= base_url('pengaduan-masuk/update') ?>" method="post">
-                        <input type="hidden" name="kode" value="<?= $item['kode'] ?>">
-                        <input type="hidden" name="status_id" value="<?= $item['status_id'] ?>">
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7">
-                            <!--begin::Label-->
-                            <label class="fs-6 fw-semibold form-label mb-2" for="wilayah_id">
-                                <span class="required">Tugaskan ke</span>
-                            </label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <select class="form-select form-select-solid" data-control="select2"
-                                    data-placeholder="Pilih Desa"
-                                    name="wilayah_id"
-                                    data-dropdown-parent="#kt_modal_assign_pengaduan_<?= $item['kode'] ?>"
-                                    data-allow-clear="true">
-                                <option></option>
-                                <?php foreach ($wilayah as $w) : ?>
-                                    <option
-                                        value="<?= $w['id'] ?>" <?= $item['wilayah_id'] == $w['id'] ? 'selected' : '' ?>><?= $w['nama_wilayah'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <!--end::Input-->
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7">
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="fs-6 fw-semibold form-label mb-2" for="komentar">Tanggapan</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <textarea class="form-control form-control-solid" rows="3" name="komentar"
-                                          placeholder="Tanggapan"><?= $item['komentar'] ?></textarea>
-                                <!--end::Input-->
-                            </div>
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Actions-->
-                        <div class="text-center pt-15">
-                            <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">
-                                Batal
-                            </button>
-                            <button type="submit" class="btn btn-primary" data-kt-menus-modal-action="submit">
-                                <span class="indicator-label">Kirim</span>
-                                <span class="indicator-progress">Please wait...
-								<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
-                            </button>
-                        </div>
-                        <!--end::Actions-->
-                    </form>
-                    <!--end::Form-->
-                </div>
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
-    <!--end::Modal - Update menus-->
-<?php endforeach; ?>
 <?php foreach ($pengaduan as $item) : ?>
     <!--begin::Modal - Update menus-->
     <div class="modal fade" id="kt_modal_update_status_<?= $item['kode'] ?>" tabindex="-1" aria-hidden="true">

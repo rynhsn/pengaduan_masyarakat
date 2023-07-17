@@ -93,12 +93,13 @@ $routes->group('/', ['filter' => 'login'], function ($routes) {
     //pengaduan-masuk
     $routes->group('pengaduan-masuk', ['filter' => 'permission:manage-complaint'], function ($routes) {
         $routes->get('', 'PengaduanMasuk::index');
-        $routes->get('detail/(:num)', 'PengaduanMasuk::detail/$1');
-        $routes->post('create', 'PengaduanMasuk::store');
-        $routes->post('get', 'PengaduanMasuk::getComplaint');
-        $routes->put('update', 'PengaduanMasuk::update');
-        $routes->delete('delete', 'PengaduanMasuk::destroy');
+        $routes->get('detail/(:any)', 'PengaduanMasuk::detail/$1');
+        $routes->post('update', 'PengaduanMasuk::update');
+        $routes->get('riwayat', 'PengaduanMasuk::history');
+        $routes->get('riwayat/detail/(:any)', 'PengaduanMasuk::historyDetail/$1');
     });
+
+    //pengaduan-riwayat
 });
 
 /*
