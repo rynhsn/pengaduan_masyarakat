@@ -8,7 +8,7 @@
             <!--begin::Logo-->
             <span class="d-flex flex-center flex-shrink-0 w-40px me-3">
 									<img alt="Logo" src="<?= base_url() ?>media/logos/logo.png"
-                                         data-kt-element="logo" class="h-30px"/>
+                                         data-kt-element="logo" class="h-50px"/>
 								</span>
             <!--end::Logo-->
             <!--begin::Info-->

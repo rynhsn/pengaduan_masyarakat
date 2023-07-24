@@ -27,6 +27,7 @@
 
     <!--begin::Row-->
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-5 g-xl-9">
+        <?php if (count($pengaduan) > 0) : ?>
         <?php foreach ($pengaduan as $item) : ?>
             <div class="col-xl-6">
                 <!--begin::Feeds Widget 5-->
@@ -106,6 +107,20 @@
                 <!--end::Feeds Widget 5-->
             </div>
         <?php endforeach; ?>
+        <?php else : ?>
+            <div class="col-xl-12">
+                <div class="card mb-5 mb-xl-5">
+                    <div class="card-body pb-0">
+                        <div class="text-center">
+                            <img src="<?= base_url() ?>assets/media/illustrations/empty.svg" alt="" class="mw-100 mh-300px mb-10"/>
+                            <h3 class="fs-2x fw-bold mb-10">Tidak ada pengaduan</h3>
+                            <p class="text-gray-400 fs-4 fw-bold mb-10">Silahkan buat pengaduan baru</p>
+                            <a href="<?= base_url('pengaduan') ?>" class="btn btn-primary mb-10">Buat Pengaduan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
     <!--end::Row-->
 
