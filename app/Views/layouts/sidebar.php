@@ -7,15 +7,15 @@
         <!--begin::Toggle-->
             <!--begin::Logo-->
             <span class="d-flex flex-center flex-shrink-0 w-40px me-3">
-									<img alt="Logo" src="<?= base_url() ?>media/svg/brand-logos/slack-icon.svg"
+									<img alt="Logo" src="<?= base_url() ?>media/logos/logo.png"
                                          data-kt-element="logo" class="h-30px"/>
 								</span>
             <!--end::Logo-->
             <!--begin::Info-->
             <span class="d-flex flex-column align-items-start flex-grow-1">
-									<span class="fs-5 fw-bold text-white text-uppercase" data-kt-element="title">Pengaduan Masyarakat</span>
+									<span class="fs-5 fw-bold text-white text-uppercase" data-kt-element="title">SIMDUKAT</span>
 									<span class="fs-7 fw-bold text-gray-700 lh-sm"
-                                          data-kt-element="desc">Portal Pengaduan Masyarakat</span>
+                                          data-kt-element="desc">Pengaduan Masyarakat Kecamatan Bandung</span>
 								</span>
             <!--end::Info-->
         <!--end::Toggle-->
@@ -169,17 +169,6 @@
                 <!--begin::Menu item-->
                 <div class="menu-item px-5">
                     <a href="demo27/dist/account/overview.html" class="menu-link px-5">My Profile</a>
-                </div>
-                <!--end::Menu item-->
-                <!--begin::Menu item-->
-                <div class="menu-item px-5">
-                    <a href="demo27/dist/apps/projects/list.html" class="menu-link px-5">
-                        <span class="menu-text">My Projects</span>
-                        <span class="menu-badge">
-												<span
-                                                    class="badge badge-light-danger badge-circle fw-bold fs-7">3</span>
-											</span>
-                    </a>
                 </div>
                 <!--end::Menu item-->
                 <!--begin::Menu separator-->
