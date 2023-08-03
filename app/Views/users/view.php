@@ -166,17 +166,10 @@
     <div class="flex-lg-row-fluid ms-lg-15">
         <!--begin:::Tabs-->
         <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8">
-            <!--begin:::Tab item-->
-            <li class="nav-item">
-                <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"
-                   href="#kt_user_view_overview_tab">Overview</a>
-            </li>
-            <!--end:::Tab item-->
-
             <?php if (hasActionAccess('write', user_id())): ?>
                 <!--begin:::Tab item-->
                 <li class="nav-item">
-                    <a class="nav-link text-active-primary pb-4" data-kt-countup-tabs="true" data-bs-toggle="tab"
+                    <a class="nav-link text-active-primary pb-4 active" data-kt-countup-tabs="true" data-bs-toggle="tab"
                        href="#kt_user_view_overview_security">Keamanan</a>
                 </li>
                 <!--end:::Tab item-->
@@ -186,31 +179,7 @@
         <!--begin:::Tab content-->
         <div class="tab-content" id="myTabContent">
             <!--begin:::Tab pane-->
-            <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">
-                <!--begin::Card-->
-                <div class="card card-flush mb-6 mb-xl-9">
-                    <!--begin::Card header-->
-                    <div class="card-header mt-6">
-                        <!--begin::Card title-->
-                        <div class="card-title flex-column">
-                            <h2 class="mb-1">User's Schedule</h2>
-                            <div class="fs-6 fw-semibold text-muted">2 upcoming meetings</div>
-                        </div>
-                        <!--end::Card title-->
-                    </div>
-                    <!--end::Card header-->
-                    <!--begin::Card body-->
-                    <div class="card-body p-9 pt-4">
-
-
-                    </div>
-                    <!--end::Card body-->
-                </div>
-                <!--end::Card-->
-            </div>
-            <!--end:::Tab pane-->
-            <!--begin:::Tab pane-->
-            <div class="tab-pane fade" id="kt_user_view_overview_security" role="tabpanel">
+            <div class="tab-pane fade active show" id="kt_user_view_overview_security" role="tabpanel">
                 <!--begin::Card-->
                 <div class="card pt-4 mb-6 mb-xl-9">
                     <!--begin::Card header-->

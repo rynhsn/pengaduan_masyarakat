@@ -8,6 +8,7 @@ use App\Models\GroupModel;
 use App\Models\ProfileModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\UserModel;
+use Config\Services;
 use Myth\Auth\Password;
 use ReflectionException;
 
@@ -209,6 +210,16 @@ class Users extends BaseController
 
         session()->setFlashdata('message', 'Profile telah diupdate.');
         return redirect()->back();
+    }
+
+    public function accountSettings()
+    {
+        $data = [
+            'title' => 'Pengaturan Akun',
+            'validation' => Services::validation(),
+            'user' => $this->userModel->where('username', user()->username)->first(),
+        ];
+        return view('dashboard/edit-akun', $data);
     }
 
 }

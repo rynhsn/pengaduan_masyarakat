@@ -31,6 +31,10 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->group('/', ['filter' => 'login'], function ($routes) {
     $routes->get('', 'Dashboard::index');
+    $routes->group('settings', function ($routes) {
+        $routes->get('', 'Users::accountSettings');
+        $routes->post('update', 'User::update');
+    });
     $routes->group('menus',['filter' => 'permission:manage-menu'] , function ($routes) {
         $routes->get('', 'Menus::index');
         $routes->post('create', 'Menus::store');
