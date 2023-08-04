@@ -103,6 +103,16 @@ $routes->group('/', ['filter' => 'login'], function ($routes) {
         $routes->get('riwayat/detail/(:any)', 'PengaduanMasuk::historyDetail/$1');
     });
 
+    //laporan
+    $routes->group('laporan', ['filter' => 'permission:laporan'], function ($routes) {
+        $routes->get('', 'Laporan::index');
+        $routes->get('detail/(:any)', 'Laporan::detail/$1');
+        $routes->post('create', 'Laporan::store');
+        $routes->post('update', 'Laporan::update');
+        $routes->get('riwayat', 'Laporan::history');
+        $routes->get('riwayat/detail/(:any)', 'Laporan::historyDetail/$1');
+    });
+
     //pengaduan-riwayat
 });
 
