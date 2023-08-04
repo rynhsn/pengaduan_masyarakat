@@ -57,4 +57,15 @@ class LaporanModel extends Model
             ->where('tahun', $tahun)
             ->get()->getRowArray();
     }
+
+    //save laporan dan detail laporan
+    public function saveLaporan($data)
+    {
+        $this->db->transStart();
+        $this->db->table('laporan')->insert($data['laporan']);
+        $laporan_id = $this->db->insertID();
+        $this->db->table('detail_laporan')->insertBatch($data['detail_laporan']);
+        $this->db->transComplete();
+        return $this->db->transStatus();
+    }
 }

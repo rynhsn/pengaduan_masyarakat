@@ -192,7 +192,7 @@
                                 <select class="form-select form-select-solid" name="bulan" required>
                                     <option value="">Pilih Bulan</option>
                                     <?php foreach ($bulan as $k => $v): ?>
-                                        <option value="<?= $k ?>"><?= $v ?></option>
+                                        <option value="<?= $k+1 ?>"><?= $v ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
