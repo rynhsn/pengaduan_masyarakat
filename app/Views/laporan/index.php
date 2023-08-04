@@ -9,7 +9,7 @@
             <div class="row">
                 <?php if (hasActionAccess('create', user_id())): ?>
                     <div class="col">
-                        <button type="button" class="btn btn-success" data-bs-target="#tambahLaporan"
+                        <button type="button" class="btn btn-primary" data-bs-target="#tambahLaporan"
                                 data-bs-toggle="modal">
                             <i class="ki-duotone ki-plus-square fs-2">
                                 <span class="path1"></span>
@@ -113,12 +113,12 @@
                 <tbody>
                 <?php foreach ($laporan as $item): ?>
                     <tr>
-                        <td class="ps-4 fw-bold"><?= $item['bulan'] . '-' . $item['tahun'] ?></td>
+                        <td class="ps-4 fw-bold"><?= BULAN[$item['bulan']] . ' ' . $item['tahun'] ?></td>
                         <td class="fw-bold"><?= $item['keterangan'] ?></td>
                         <td class="fw-bold"><?= date('d M Y', strtotime($item['created_at'])) ?></td>
                         <td class="fw-bold"><?= date('d M Y', strtotime($item['updated_at'])) ?></td>
                         <td class="text-end">
-                            <a href="<?= base_url('panel/laporan/detail/' . $item['id']) ?>"
+                            <a href="<?= base_url('laporan/detail/' . $item['id']) ?>"
                                class="btn btn-icon btn-active-color-warning btn-sm me-1" title="Detail">
                                 <i class="ki-duotone ki-eye fs-2">
                                     <span class="path1"></span>
@@ -137,7 +137,7 @@
                                     </i>
                                 </button>
                             <?php endif; ?>
-                            <a href="<?= base_url('panel/laporan/cetak/' . $item['id']) ?>"
+                            <a href="<?= base_url('laporan/cetak/' . $item['id']) ?>"
                                class="btn btn-icon btn-active-color-info btn-sm me-1"
                                title="Unduh" target="_blank">
                                 <i class="ki-duotone ki-file-down fs-2">
@@ -191,8 +191,8 @@
                             <div class="col-sm-9">
                                 <select class="form-select form-select-solid" name="bulan" required>
                                     <option value="">Pilih Bulan</option>
-                                    <?php foreach ($bulan as $k => $v): ?>
-                                        <option value="<?= $k+1 ?>"><?= $v ?></option>
+                                    <?php foreach ($bulan as $k): ?>
+                                        <option value="<?= $k ?>"><?= BULAN[$k] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -202,9 +202,9 @@
                             <div class="col-sm-9">
                                 <select class="form-select form-select-solid" name="tahun" required>
                                     <option value="">Pilih Tahun</option>
-                                    <?php for($i = date('Y'); $i >= date('Y') - 5; $i--): ?>
+                                    <?php foreach($tahun as $i): ?>
                                         <option value="<?= $i ?>"><?= $i ?></option>
-                                    <?php endfor; ?>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -225,7 +225,7 @@
                     <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">Batal</button>
                     <!--end::Button-->
                     <!--begin::Button-->
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-primary">
                         <span class="indicator-label">Simpan</span>
                         <span class="indicator-progress">Please wait...
                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span>

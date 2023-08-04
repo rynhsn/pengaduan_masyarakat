@@ -80,11 +80,6 @@ class PengaduanModel extends Model
         return $this->where('desa_id', $desa_id)->findAll();
     }
 
-    public function getByQuery($query)
-    {
-
-    }
-
     public function getById($kode)
     {
         return $this->select('pengaduan.*, wilayah.nama_wilayah, users.username, users.email, profile.nama_lengkap, profile.foto_profil, status_pengaduan.label, status_pengaduan.deskripsi as status_deskripsi, status_pengaduan.warna')
@@ -93,5 +88,31 @@ class PengaduanModel extends Model
             ->join('profile', 'profile.user_id = pengaduan.user_id')
             ->join('status_pengaduan', 'status_pengaduan.id = pengaduan.status_id')
             ->where('pengaduan.kode', $kode)->first();
+    }
+
+    //get data tahun, group by tahun pengaduan berdasarkan created at
+    public function getTahun()
+    {
+        //ambil kolom tahun nya saja
+        $query = $this->select('YEAR(created_at) as tahun')->groupBy('tahun')->findAll();
+        //ubah array menjadi array yang berisi tahun saja
+        $tahun = [];
+        foreach ($query as $key => $value) {
+            $tahun[] = $value['tahun'];
+        }
+        return $tahun;
+    }
+
+    //get data bulan, group by bulan pengaduan berdasarkan created at
+    public function getBulan()
+    {
+        //ambil kolom bulan nya saja
+        $query = $this->select('MONTH(created_at) as bulan')->groupBy('bulan')->findAll();
+        //ubah array menjadi array yang berisi bulan saja
+        $bulan = [];
+        foreach ($query as $key => $value) {
+            $bulan[] = $value['bulan'];
+        }
+        return $bulan;
     }
 }

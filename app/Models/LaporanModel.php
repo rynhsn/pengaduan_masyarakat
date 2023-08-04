@@ -40,11 +40,12 @@ class LaporanModel extends Model
     protected $afterDelete = [];
 
     //getlaporan by id join detail_laporan, pengaduan, status_pengaduan
-    public function getLaporan($id = null)
+    public function getLaporan($id)
     {
         return $this->db->table('laporan')
             ->join('detail_laporan', 'detail_laporan.laporan_id = laporan.id')
             ->join('pengaduan', 'pengaduan.kode = detail_laporan.pengaduan_kode')
+            ->join('profile', 'profile.user_id = pengaduan.user_id')
             ->join('status_pengaduan', 'status_pengaduan.id = detail_laporan.status_id')
             ->where('laporan.id', $id)
             ->get()->getRowArray();

@@ -25,15 +25,24 @@ class Laporan extends BaseController
         $data = [
             'title' => 'Laporan',
             'laporan' => $this->laporanModel->findAll(),
-            'bulan' => [
-                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-            ],
-            'tahun' => [
-                '2021', '2022', '2023', '2024', '2025'
-            ]
+            'bulan' => $this->pengaduanModel->getBulan(),
+            'tahun' => $this->pengaduanModel->getTahun(),
         ];
+
         return view('laporan/index', $data);
+    }
+
+    //detail
+    public function detail($id): string
+    {
+        $data = [
+            'title' => 'Detail Laporan',
+            'laporan' => $this->laporanModel->find($id),
+            'detail' => $this->detailLaporanModel->getDetailLaporan($id),
+        ];
+
+//        dd($data);
+        return view('laporan/detail', $data);
     }
 
     //save
@@ -73,4 +82,6 @@ class Laporan extends BaseController
         session()->setFlashdata('message', 'Laporan berhasil ditambahkan!');
         return redirect()->back();
     }
+
+
 }

@@ -39,4 +39,16 @@ class DetailLaporanModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    //get detail laporan by laporan_id
+    public function getDetailLaporan($id)
+    {
+        return $this->db->table('detail_laporan')
+            ->select('detail_laporan.*, pengaduan.created_at as tanggal_buat ,profile.nik, status_pengaduan.*')
+            ->join('pengaduan', 'pengaduan.kode = detail_laporan.pengaduan_kode')
+            ->join('profile', 'profile.user_id = pengaduan.user_id')
+            ->join('status_pengaduan', 'status_pengaduan.id = detail_laporan.status_id')
+            ->where('laporan_id', $id)
+            ->get()->getResultArray();
+    }
+
 }
