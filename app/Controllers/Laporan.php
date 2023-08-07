@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\DetailLaporanModel;
 use App\Models\LaporanModel;
 use App\Models\PengaduanModel;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class Laporan extends BaseController
 {
@@ -83,5 +84,16 @@ class Laporan extends BaseController
         return redirect()->back();
     }
 
+    //drop
+    public function drop($id): RedirectResponse
+    {
+        if(!$this->laporanModel->delete($id)){
+            session()->setFlashdata('error', 'Laporan gagal dihapus!');
+            return redirect()->back();
+        }
+
+        session()->setFlashdata('message', 'Laporan berhasil dihapus!');
+        return redirect()->back();
+    }
 
 }

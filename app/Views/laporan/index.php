@@ -127,25 +127,18 @@
                                 </i>
                             </a>
                             <?php if (hasActionAccess('write', user_id())): ?>
-                                <button type="button" data-bs-toggle="modal"
-                                        data-bs-target="#kt_modal_perbarui_<?= $item['id'] ?>"
+                                <a href="<?= base_url('laporan/drop/'.$item['id']) ?>"
                                         class="btn btn-icon btn-active-color-primary btn-sm me-1"
-                                        title="Perbarui">
-                                    <i class="ki-duotone ki-arrows-circle fs-2">
+                                        title="Hapus" onclick="return confirm('Laporan akan dihapus, anda yakin?')">
+                                    <i class="ki-duotone ki-trash fs-2">
                                         <span class="path1"></span>
                                         <span class="path2"></span>
+                                        <span class="path3"></span>
+                                        <span class="path4"></span>
+                                        <span class="path5"></span>
                                     </i>
-                                </button>
+                                </a>
                             <?php endif; ?>
-                            <a href="<?= base_url('laporan/cetak/' . $item['id']) ?>"
-                               class="btn btn-icon btn-active-color-info btn-sm me-1"
-                               title="Unduh" target="_blank">
-                                <i class="ki-duotone ki-file-down fs-2">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                </i>
-                            </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

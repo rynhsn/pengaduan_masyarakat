@@ -108,9 +108,7 @@ $routes->group('/', ['filter' => 'login'], function ($routes) {
         $routes->get('', 'Laporan::index');
         $routes->get('detail/(:any)', 'Laporan::detail/$1');
         $routes->post('create', 'Laporan::store');
-        $routes->post('update', 'Laporan::update');
-        $routes->get('riwayat', 'Laporan::history');
-        $routes->get('riwayat/detail/(:any)', 'Laporan::historyDetail/$1');
+        $routes->get('drop/(:any)', 'Laporan::drop/$1');
     });
 
     //pengaduan-riwayat

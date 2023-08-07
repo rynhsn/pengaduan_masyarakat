@@ -3,30 +3,6 @@
 
     <!--begin::Card-->
     <div class="card">
-        <!--begin::Card header-->
-        <div class="card-header border-0 pt-6">
-            <!--begin::Card title-->
-            <!--begin::Card toolbar-->
-            <div class="card-toolbar">
-                <!--begin::Toolbar-->
-                <div class="d-flex justify-content-end" data-kt-siswa-table-toolbar="base">
-                    <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                        <a href="<?= base_url('laporan/cetak/' . $laporan['id']) ?>"
-                           class="btn btn-light-info" target="_blank">
-                            <i class="ki-duotone ki-file-down fs-2">
-                                <span class="path1"></span>
-                                <span class="path2"></span>
-                                <span class="path3"></span>
-                            </i>
-                            Unduh
-                        </a>
-                    </div>
-                </div>
-                <!--end::Toolbar-->
-            </div>
-            <!--end::Card toolbar-->
-        </div>
-        <!--end::Card header-->
         <!--begin::Card body-->
         <div class="card-body py-4">
             <div class="row">
