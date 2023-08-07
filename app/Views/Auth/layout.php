@@ -63,7 +63,7 @@
                     <img alt="Logo" src="<?= base_url() ?>media/logos/logo.png" class="h-60px h-lg-150px"/>
                 </a>
                 <h1 class="mt-3 text-white">SIMDUKAT</h1>
-                <h2 class="text-white">Pengaduan Masyarakat Kabupaten Bandung</h2>
+                <h2 class="text-white">Pengaduan Masyarakat Kecamatan Bandung</h2>
                 <!--end::Logo-->
             </div>
             <!--end::Content-->
