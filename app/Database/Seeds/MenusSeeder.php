@@ -119,20 +119,20 @@ class MenusSeeder extends Seeder
             ],
 
             //settings
-            [
-                'permission_id' => '8',
-                'menu' => 'Settings',
-                'description' => 'Pengaturan',
-                'url' => null,
-                'icon' => 'ki-outline ki-gear',
-                'is_active' => '1',
-                'is_parent' => '1',
-                'is_core' => '1',
-                'has_notify' => '0',
-                'notify' => '0',
-                'sequence' => '8',
-                'created_at' => Time::now(),
-            ],
+//            [
+//                'permission_id' => '8',
+//                'menu' => 'Settings',
+//                'description' => 'Pengaturan',
+//                'url' => null,
+//                'icon' => 'ki-outline ki-gear',
+//                'is_active' => '1',
+//                'is_parent' => '1',
+//                'is_core' => '1',
+//                'has_notify' => '0',
+//                'notify' => '0',
+//                'sequence' => '8',
+//                'created_at' => Time::now(),
+//            ],
         ];
         $this->db->table('menus');
         $this->db->table('menus')->insertBatch($data);
