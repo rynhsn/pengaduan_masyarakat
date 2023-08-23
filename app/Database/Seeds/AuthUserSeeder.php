@@ -107,6 +107,66 @@ class AuthUserSeeder extends Seeder
         // Insert user
         $userModel->withGroup('Kepala Desa')->skipValidation(true)->protect(false)->save($user);
 
+        //kepaladesa2
+        $data = [
+            'username' => 'kepaladesa3',
+            'email' => 'kades3@example.com',
+            'password' => 'kepaladesa'
+        ];
+
+        $user = new User($data);
+        $user->activate();
+        // Insert user
+        $userModel->withGroup('Kepala Desa')->skipValidation(true)->protect(false)->save($user);
+
+        //kepaladesa2
+        $data = [
+            'username' => 'kepaladesa4',
+            'email' => 'kades4@example.com',
+            'password' => 'kepaladesa'
+        ];
+
+        $user = new User($data);
+        $user->activate();
+        // Insert user
+        $userModel->withGroup('Kepala Desa')->skipValidation(true)->protect(false)->save($user);
+
+        //kepaladesa2
+        $data = [
+            'username' => 'kepaladesa5',
+            'email' => 'kades5@example.com',
+            'password' => 'kepaladesa'
+        ];
+
+        $user = new User($data);
+        $user->activate();
+        // Insert user
+        $userModel->withGroup('Kepala Desa')->skipValidation(true)->protect(false)->save($user);
+
+        //kepaladesa2
+        $data = [
+            'username' => 'kepaladesa6',
+            'email' => 'kades6@example.com',
+            'password' => 'kepaladesa'
+        ];
+
+        $user = new User($data);
+        $user->activate();
+        // Insert user
+        $userModel->withGroup('Kepala Desa')->skipValidation(true)->protect(false)->save($user);
+
+        //kepaladesa2
+        $data = [
+            'username' => 'kepaladesa7',
+            'email' => 'kades7@example.com',
+            'password' => 'kepaladesa'
+        ];
+
+        $user = new User($data);
+        $user->activate();
+        // Insert user
+        $userModel->withGroup('Kepala Desa')->skipValidation(true)->protect(false)->save($user);
+
         $data = [
             [
                 'user_id' => 1,
@@ -197,6 +257,66 @@ class AuthUserSeeder extends Seeder
                 'nama_lengkap' => 'Kepala Desa C',
                 'nik' => '1234567890123456',
                 'alamat' => 'Jl. Kepala Desa C',
+                'tanggal_lahir' => '2000-01-01',
+                'jenis_kelamin' => 'Laki-laki',
+                'telepon' => '081234567890',
+                'foto_profil' => '300-24.jpg',
+                'created_at' => '2021-07-05 13:38:47',
+                'updated_at' => '2021-07-05 13:38:47',
+            ],
+            [
+                'user_id' => 9,
+                'nama_lengkap' => 'Kepala Desa D',
+                'nik' => '1234567890123457',
+                'alamat' => 'Jl. Kepala Desa D',
+                'tanggal_lahir' => '2000-01-01',
+                'jenis_kelamin' => 'Laki-laki',
+                'telepon' => '081234567890',
+                'foto_profil' => '300-24.jpg',
+                'created_at' => '2021-07-05 13:38:47',
+                'updated_at' => '2021-07-05 13:38:47',
+            ],
+            [
+                'user_id' => 10,
+                'nama_lengkap' => 'Kepala Desa E',
+                'nik' => '1234567890123458',
+                'alamat' => 'Jl. Kepala Desa E',
+                'tanggal_lahir' => '2000-01-01',
+                'jenis_kelamin' => 'Laki-laki',
+                'telepon' => '081234567890',
+                'foto_profil' => '300-24.jpg',
+                'created_at' => '2021-07-05 13:38:47',
+                'updated_at' => '2021-07-05 13:38:47',
+            ],
+            [
+                'user_id' => 11,
+                'nama_lengkap' => 'Kepala Desa F',
+                'nik' => '1234567890123459',
+                'alamat' => 'Jl. Kepala Desa F',
+                'tanggal_lahir' => '2000-01-01',
+                'jenis_kelamin' => 'Laki-laki',
+                'telepon' => '081234567890',
+                'foto_profil' => '300-24.jpg',
+                'created_at' => '2021-07-05 13:38:47',
+                'updated_at' => '2021-07-05 13:38:47',
+            ],
+            [
+                'user_id' => 12,
+                'nama_lengkap' => 'Kepala Desa G',
+                'nik' => '1234567890123410',
+                'alamat' => 'Jl. Kepala Desa G',
+                'tanggal_lahir' => '2000-01-01',
+                'jenis_kelamin' => 'Laki-laki',
+                'telepon' => '081234567890',
+                'foto_profil' => '300-24.jpg',
+                'created_at' => '2021-07-05 13:38:47',
+                'updated_at' => '2021-07-05 13:38:47',
+            ],
+            [
+                'user_id' => 13,
+                'nama_lengkap' => 'Kepala Desa H',
+                'nik' => '1234567890123411',
+                'alamat' => 'Jl. Kepala Desa H',
                 'tanggal_lahir' => '2000-01-01',
                 'jenis_kelamin' => 'Laki-laki',
                 'telepon' => '081234567890',
