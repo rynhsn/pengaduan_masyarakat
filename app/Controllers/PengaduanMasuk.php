@@ -20,11 +20,15 @@ class PengaduanMasuk extends BaseController
         $this->wilayahModel = new WilayahModel();
     }
 
-    public function index()
+    public function index($status = null)
     {
+        if(!$status) {
+            $status='masuk';
+        }
+
         $data = [
             'title' => 'Pengaduan Masuk',
-            'pengaduan' => $this->pengaduanModel->getAll('masuk'),
+            'pengaduan' => $this->pengaduanModel->getAll($status),
             'statusFilter' => $this->statusModel->getAll('masuk'),
             'status' => $this->statusModel->findAll(),
             'wilayah' => $this->wilayahModel->findAll(),
@@ -54,10 +58,15 @@ class PengaduanMasuk extends BaseController
         return redirect()->back();
     }
 
-    public function history(){
+    public function history($status = null)
+    {
+        if(!$status) {
+            $status='riwayat';
+        }
+
         $data = [
             'title' => 'Riwayat Pengaduan',
-            'pengaduan' => $this->pengaduanModel->getAll('riwayat'),
+            'pengaduan' => $this->pengaduanModel->getAll($status),
             'statusFilter' => $this->statusModel->getAll('riwayat'),
             'status' => $this->statusModel->findAll(),
         ];

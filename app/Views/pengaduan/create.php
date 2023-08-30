@@ -98,7 +98,7 @@
         <div class="col-xl-9 fv-row">
             <div class="position-relative d-flex align-items-center">
                 <i class="ki-outline ki-calendar-8 position-absolute ms-4 mb-1 fs-2"></i>
-                <input class="form-control form-control-solid ps-12" name="date" placeholder="Pilih tanggal"
+                <input class="form-control form-control-solid ps-12" name="date" placeholder="Pilih tanggal" value="<?= date('Y-m-d') ?>"
                        id="kt_datepicker_1"/>
             </div>
         </div>

@@ -47,7 +47,8 @@ class Laporan extends BaseController
     }
 
     //save
-    public function store(){
+    public function store()
+    {
         //cek bulan dan tahun
         $bulan = $this->request->getPost('bulan');
         $tahun = $this->request->getPost('tahun');
@@ -59,7 +60,7 @@ class Laporan extends BaseController
             return redirect()->back();
         }
 
-        if(!$this->laporanModel->save($this->request->getPost())){
+        if (!$this->laporanModel->save($this->request->getPost())) {
             session()->setFlashdata('error', 'Laporan gagal ditambahkan!');
             return redirect()->back();
         }
@@ -69,14 +70,16 @@ class Laporan extends BaseController
 
         $pengaduan = $this->pengaduanModel->where('YEAR(created_at)', $tahun)->where('MONTH(created_at)', $bulan)->findAll();
 
-        foreach ($pengaduan as $s) {
-            $detail = [
-                'laporan_id' => $laporan_id,
-                'pengaduan_kode' => $s['kode'],
-                'status_id' => $s['status_id'],
-                'created_at' => date('Y-m-d H:i:s'),
-            ];
-            $this->detailLaporanModel->save($detail);
+        if ($pengaduan) {
+            foreach ($pengaduan as $s) {
+                $detail = [
+                    'laporan_id' => $laporan_id,
+                    'pengaduan_kode' => $s['kode'],
+                    'status_id' => $s['status_id'],
+                    'created_at' => date('Y-m-d H:i:s'),
+                ];
+                $this->detailLaporanModel->save($detail);
+            }
         }
 
 
@@ -87,7 +90,7 @@ class Laporan extends BaseController
     //drop
     public function drop($id): RedirectResponse
     {
-        if(!$this->laporanModel->delete($id)){
+        if (!$this->laporanModel->delete($id)) {
             session()->setFlashdata('error', 'Laporan gagal dihapus!');
             return redirect()->back();
         }

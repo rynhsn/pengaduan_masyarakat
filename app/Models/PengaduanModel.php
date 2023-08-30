@@ -56,7 +56,20 @@ class PengaduanModel extends Model
 
         if ($status == 'masuk') {
             $query = $query->whereIn('pengaduan.status_id', ['1', '2', '3', '4', '5', '6', '7']);
-        }elseif ($status == 'riwayat') {
+        }
+        elseif ($status == 'proses'){
+            $query = $query->whereIn('pengaduan.status_id', ['2']);
+        }
+        elseif ($status == 'selesai'){
+            $query = $query->whereIn('pengaduan.status_id', ['8']);
+        }
+        elseif ($status == 'tolak'){
+            $query = $query->whereIn('pengaduan.status_id', ['9']);
+        }
+        elseif ($status == 'palsu'){
+            $query = $query->whereIn('pengaduan.status_id', ['10']);
+        }
+        elseif ($status == 'riwayat') {
             $query = $query->whereIn('pengaduan.status_id', ['8', '9', '10']);
         }
 

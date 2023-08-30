@@ -20,7 +20,7 @@
             <!--begin::Col-->
             <div class="col-sm-6 col-xl-2 mb-xl-10">
                 <!--begin::Card widget 2-->
-                <div class="card h-lg-100">
+                <a class="card h-lg-100" href="<?= base_url('pengaduan-masuk/masuk') ?>">
                     <!--begin::Body-->
                     <div class="card-body d-flex justify-content-between align-items-start flex-column">
                         <!--begin::Icon-->
@@ -42,14 +42,14 @@
                         <!--end::Section-->
                     </div>
                     <!--end::Body-->
-                </div>
+                </a>
                 <!--end::Card widget 2-->
             </div>
             <!--end::Col-->
             <!--begin::Col-->
             <div class="col-sm-6 col-xl-2 mb-xl-10">
                 <!--begin::Card widget 2-->
-                <div class="card h-lg-100">
+                <a class="card h-lg-100" href="<?= base_url('pengaduan-masuk/proses') ?>">
                     <!--begin::Body-->
                     <div class="card-body d-flex justify-content-between align-items-start flex-column">
                         <!--begin::Icon-->
@@ -71,14 +71,14 @@
                         <!--end::Section-->
                     </div>
                     <!--end::Body-->
-                </div>
+                </a>
                 <!--end::Card widget 2-->
             </div>
             <!--end::Col-->
             <!--begin::Col-->
             <div class="col-sm-6 col-xl-2 mb-xl-10">
                 <!--begin::Card widget 2-->
-                <div class="card h-lg-100">
+                <a class="card h-lg-100" href="<?= base_url('pengaduan-masuk/riwayat/selesai') ?>">
                     <!--begin::Body-->
                     <div class="card-body d-flex justify-content-between align-items-start flex-column">
                         <!--begin::Icon-->
@@ -100,14 +100,14 @@
                         <!--end::Section-->
                     </div>
                     <!--end::Body-->
-                </div>
+                </a>
                 <!--end::Card widget 2-->
             </div>
             <!--end::Col-->
             <!--begin::Col-->
             <div class="col-sm-6 col-xl-2 mb-xl-10">
                 <!--begin::Card widget 2-->
-                <div class="card h-lg-100">
+                <a class="card h-lg-100" href="<?= base_url('pengaduan-masuk/riwayat/tolak') ?>">
                     <!--begin::Body-->
                     <div class="card-body d-flex justify-content-between align-items-start flex-column">
                         <!--begin::Icon-->
@@ -129,14 +129,14 @@
                         <!--end::Section-->
                     </div>
                     <!--end::Body-->
-                </div>
+                </a>
                 <!--end::Card widget 2-->
             </div>
             <!--end::Col-->
             <!--begin::Col-->
             <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10">
                 <!--begin::Card widget 2-->
-                <div class="card h-lg-100">
+                <a class="card h-lg-100" href="<?= base_url('pengaduan-masuk/riwayat/palsu') ?>">
                     <!--begin::Body-->
                     <div class="card-body d-flex justify-content-between align-items-start flex-column">
                         <!--begin::Icon-->
@@ -158,7 +158,7 @@
                         <!--end::Section-->
                     </div>
                     <!--end::Body-->
-                </div>
+                </a>
                 <!--end::Card widget 2-->
             </div>
             <!--end::Col-->

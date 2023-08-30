@@ -97,9 +97,14 @@ $routes->group('/', ['filter' => 'login'], function ($routes) {
     //pengaduan-masuk
     $routes->group('pengaduan-masuk', ['filter' => 'permission:manage-complaint'], function ($routes) {
         $routes->get('', 'PengaduanMasuk::index');
+        $routes->get('masuk', 'PengaduanMasuk::index/masuk');
+        $routes->get('proses', 'PengaduanMasuk::index/proses');
         $routes->get('detail/(:any)', 'PengaduanMasuk::detail/$1');
         $routes->post('update', 'PengaduanMasuk::update');
         $routes->get('riwayat', 'PengaduanMasuk::history');
+        $routes->get('riwayat/selesai', 'PengaduanMasuk::history/selesai');
+        $routes->get('riwayat/tolak', 'PengaduanMasuk::history/tolak');
+        $routes->get('riwayat/palsu', 'PengaduanMasuk::history/palsu');
         $routes->get('riwayat/detail/(:any)', 'PengaduanMasuk::historyDetail/$1');
     });
 
