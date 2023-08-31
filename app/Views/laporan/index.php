@@ -113,7 +113,8 @@
                 <tbody>
                 <?php foreach ($laporan as $item): ?>
                     <tr>
-                        <td class="ps-4 fw-bold"><?= BULAN[$item['bulan']] . ' ' . $item['tahun'] ?></td>
+<!--                        <td class="ps-4 fw-bold">--><?php //= BULAN[$item['bulan']] . ' ' . $item['tahun'] ?><!--</td>-->
+                        <td class="ps-4 fw-bold"><?= date('d M Y', strtotime($item['tanggal_awal'])) . ' - ' . date('d M Y', strtotime($item['tanggal_akhir'])) ?></td>
                         <td class="fw-bold"><?= $item['keterangan'] ?></td>
                         <td class="fw-bold"><?= date('d M Y', strtotime($item['created_at'])) ?></td>
                         <td class="fw-bold"><?= date('d M Y', strtotime($item['updated_at'])) ?></td>
@@ -179,26 +180,32 @@
                 <div class="modal-body py-10 px-lg-17">
                     <!--begin::Input group-->
                     <div class="d-flex flex-column mb-5 fv-row">
+<!--                        <div class="row mb-3">-->
+<!--                            <label for="periode" class="col-sm-3 col-form-label">Bulan</label>-->
+<!--                            <div class="col-sm-9">-->
+<!--                                <select class="form-select form-select-solid" name="bulan" required>-->
+<!--                                    <option value="">Pilih Bulan</option>-->
+<!--                                    --><?php //foreach ($bulan as $k): ?>
+<!--                                        <option value="--><?php //= $k ?><!--">--><?php //= BULAN[$k] ?><!--</option>-->
+<!--                                    --><?php //endforeach; ?>
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row mb-3">-->
+<!--                            <label for="periode" class="col-sm-3 col-form-label">Tahun</label>-->
+<!--                            <div class="col-sm-9">-->
+<!--                                <select class="form-select form-select-solid" name="tahun" required>-->
+<!--                                    <option value="">Pilih Tahun</option>-->
+<!--                                    --><?php //foreach($tahun as $i): ?>
+<!--                                        <option value="--><?php //= $i ?><!--">--><?php //= $i ?><!--</option>-->
+<!--                                    --><?php //endforeach; ?>
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div class="row mb-3">
-                            <label for="periode" class="col-sm-3 col-form-label">Bulan</label>
+                            <label for="periode" class="col-sm-3 col-form-label">Periode</label>
                             <div class="col-sm-9">
-                                <select class="form-select form-select-solid" name="bulan" required>
-                                    <option value="">Pilih Bulan</option>
-                                    <?php foreach ($bulan as $k): ?>
-                                        <option value="<?= $k ?>"><?= BULAN[$k] ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="periode" class="col-sm-3 col-form-label">Tahun</label>
-                            <div class="col-sm-9">
-                                <select class="form-select form-select-solid" name="tahun" required>
-                                    <option value="">Pilih Tahun</option>
-                                    <?php foreach($tahun as $i): ?>
-                                        <option value="<?= $i ?>"><?= $i ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <input class="form-control form-control-solid" placeholder="Pick date" id="kt_daterangepicker" name="periode" required/>
                             </div>
                         </div>
                         <div class="row">

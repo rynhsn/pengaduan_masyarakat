@@ -50,17 +50,27 @@ class Laporan extends BaseController
     public function store()
     {
         //cek bulan dan tahun
-        $bulan = $this->request->getPost('bulan');
-        $tahun = $this->request->getPost('tahun');
+//        $bulan = $this->request->getPost('bulan');
+//        $tahun = $this->request->getPost('tahun');
+        $periode = $this->request->getPost('periode');
 
-        $cek = $this->laporanModel->cek($bulan, $tahun);
+        //$periode string (23) "07/01/2023 - 08/31/2023" trim $periode menjadi tanggal awal dan akhir
+        $periode = explode(' - ', $periode);
+        //ubah format tanggal menjadi Y-m-d untuk disimpan di database
+        $data = [
+            'tanggal_awal' => date('Y-m-d', strtotime($periode[0])),
+            'tanggal_akhir' => date('Y-m-d', strtotime($periode[1])),
+            'keterangan' => $this->request->getPost('keterangan'),
+        ];
 
-        if ($cek) {
-            session()->setFlashdata('error', 'Laporan sudah ada!');
-            return redirect()->back();
-        }
+//        $cek = $this->laporanModel->cek($bulan, $tahun);
 
-        if (!$this->laporanModel->save($this->request->getPost())) {
+//        if ($cek) {
+//            session()->setFlashdata('error', 'Laporan sudah ada!');
+//            return redirect()->back();
+//        }
+
+        if (!$this->laporanModel->save($data)) {
             session()->setFlashdata('error', 'Laporan gagal ditambahkan!');
             return redirect()->back();
         }
@@ -68,8 +78,10 @@ class Laporan extends BaseController
         //get id laporan
         $laporan_id = $this->laporanModel->getInsertID();
 
-        $pengaduan = $this->pengaduanModel->where('YEAR(created_at)', $tahun)->where('MONTH(created_at)', $bulan)->findAll();
-
+//        $pengaduan = $this->pengaduanModel->where('YEAR(created_at)', $tahun)->where('MONTH(created_at)', $bulan)->findAll();
+        //ambil data pengaduan berdasarkan created_at antara tanggal awal dan akhir
+        $pengaduan = $this->pengaduanModel->where('created_at >=', $data['tanggal_awal'])->where('created_at <=', $data['tanggal_akhir'])->findAll();
+//        dd($pengaduan);
         if ($pengaduan) {
             foreach ($pengaduan as $s) {
                 $detail = [

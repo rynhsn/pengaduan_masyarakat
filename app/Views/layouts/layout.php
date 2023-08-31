@@ -145,6 +145,7 @@
 		<!--end::Javascript-->
 
 		<script>
+            $("#kt_daterangepicker").daterangepicker();
 			$("#kt_datepicker_flat").flatpickr();
 			$("#kt_datatable_responsive").DataTable({
 				responsive: true

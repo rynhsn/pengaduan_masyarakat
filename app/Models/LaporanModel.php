@@ -13,7 +13,8 @@ class LaporanModel extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = ['bulan', 'tahun', 'keterangan', 'created_at', 'updated_at'];
+//    protected $allowedFields = ['bulan', 'tahun', 'tanggal_awal', 'tanggal_akhir', 'keterangan', 'created_at', 'updated_at'];
+    protected $allowedFields = ['tanggal_awal', 'tanggal_akhir', 'keterangan', 'created_at', 'updated_at'];
 
     // Dates
     protected $useTimestamps = true;
@@ -51,22 +52,22 @@ class LaporanModel extends Model
             ->get()->getRowArray();
     }
 
-    public function cek(?string $bulan, ?string $tahun)
-    {
-        return $this->db->table('laporan')
-            ->where('bulan', $bulan)
-            ->where('tahun', $tahun)
-            ->get()->getRowArray();
-    }
+//    public function cek(?string $bulan, ?string $tahun)
+//    {
+//        return $this->db->table('laporan')
+//            ->where('bulan', $bulan)
+//            ->where('tahun', $tahun)
+//            ->get()->getRowArray();
+//    }
 
     //save laporan dan detail laporan
-    public function saveLaporan($data)
-    {
-        $this->db->transStart();
-        $this->db->table('laporan')->insert($data['laporan']);
-        $laporan_id = $this->db->insertID();
-        $this->db->table('detail_laporan')->insertBatch($data['detail_laporan']);
-        $this->db->transComplete();
-        return $this->db->transStatus();
-    }
+//    public function saveLaporan($data)
+//    {
+//        $this->db->transStart();
+//        $this->db->table('laporan')->insert($data['laporan']);
+//        $laporan_id = $this->db->insertID();
+//        $this->db->table('detail_laporan')->insertBatch($data['detail_laporan']);
+//        $this->db->transComplete();
+//        return $this->db->transStatus();
+//    }
 }

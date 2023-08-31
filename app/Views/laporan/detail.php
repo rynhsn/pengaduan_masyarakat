@@ -15,7 +15,7 @@
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row">
                             <input type="text" class="form-control form-control-lg form-control-transparent"
-                                   value="<?= BULAN[$laporan['bulan']] . ' ' . $laporan['tahun']; ?>" disabled/>
+                                   value="<?= date('d M Y', strtotime($laporan['tanggal_awal'])) . ' - ' . date('d M Y', strtotime($laporan['tanggal_akhir'])); ?>" disabled/>
                         </div>
 
                         <!--end::Col-->
@@ -63,7 +63,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!--                        --><?php //dd($detail)?>
                 <?php foreach ($detail as $item): ?>
                     <tr>
                         <td class="ps-4 fw-bold">

@@ -10,8 +10,10 @@ class CreateLaporanTables extends Migration
     {
         $this->forge->addField([
             'id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'bulan' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
-            'tahun' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
+//            'bulan' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
+//            'tahun' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
+            'tanggal_awal' => ['type' => 'DATE', 'null' => true],
+            'tanggal_akhir' => ['type' => 'DATE', 'null' => true],
             'keterangan' => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
             'created_at' => ['type' => 'DATETIME', 'null' => true],
             'updated_at' => ['type' => 'DATETIME', 'null' => true],
