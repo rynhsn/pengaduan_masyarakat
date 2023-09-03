@@ -111,6 +111,7 @@ $routes->group('/', ['filter' => 'login'], function ($routes) {
     //laporan
     $routes->group('laporan', ['filter' => 'permission:laporan'], function ($routes) {
         $routes->get('', 'Laporan::index');
+//        $routes->get('filter', 'Laporan::index/$1');
         $routes->get('detail/(:any)', 'Laporan::detail/$1');
         $routes->post('create', 'Laporan::store');
         $routes->get('drop/(:any)', 'Laporan::drop/$1');

@@ -23,12 +23,15 @@ class Laporan extends BaseController
 
     public function index(): string
     {
-        $data = [
-            'title' => 'Laporan',
-            'laporan' => $this->laporanModel->findAll(),
-            'bulan' => $this->pengaduanModel->getBulan(),
-            'tahun' => $this->pengaduanModel->getTahun(),
-        ];
+        $data['title'] = 'Laporan';
+        $filter = $this->request->getGet();
+        if ($filter) {
+            $cond = ['DATE(created_at)' => $this->request->getGet('date')];
+//            dd($cond);
+            $data ['laporan'] = $this->laporanModel->getLaporanByCond($cond);
+        }else{
+            $data ['laporan'] = $this->laporanModel->findAll();
+        }
 
         return view('laporan/index', $data);
     }

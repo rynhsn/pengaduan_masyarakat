@@ -52,6 +52,13 @@ class LaporanModel extends Model
             ->get()->getRowArray();
     }
 
+    public function getLaporanByCond($cond)
+    {
+        return $this->db->table('laporan')
+            ->where($cond)
+            ->get()->getResultArray();
+    }
+
 //    public function cek(?string $bulan, ?string $tahun)
 //    {
 //        return $this->db->table('laporan')
